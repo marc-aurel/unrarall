@@ -869,6 +869,7 @@ for file in $(find_wrapper "$DIR" -depth -iregex '.*\.(rar|001)$'); do
   if [ "$SUCCESS" -eq 0 ] || [ "$FORCE" -eq 1 ]; then
     message nnl "Extracting (${UNRAR_METHOD}) \"$file\"..."
     file_encrypted=$(isRarEncrypted ${UNRARALL_BIN} ${filenameAbsolute})
+    filenameAbsolute="${filenameAbsolute//$/\\$}"
     if [ "${file_encrypted}" -eq 0 ]; then
       # The file is not encrypted. We're extracting without a password
       # Use eval so that redirection gets evaluated correctly
